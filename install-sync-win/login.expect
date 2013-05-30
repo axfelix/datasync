@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+set arg1 [lindex $argv 0]
+set arg2 [lindex $argv 1]
+set arg3 [lindex $argv 2]
+spawn ssh-copy-id $arg1 $arg2 $arg3
+expect "password:"
+send $pass"\n"
+expect eof
