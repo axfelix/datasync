@@ -33,9 +33,9 @@ make
 make install
 ./sshpass -p $pass ssh-copy-id $user@datadisk.lib.sfu.ca
 if [ $? -eq 0 ]; then
-success=($(CD msgbox --title "DataStage Install" --informative-text "Install complete! The /datadisk folder in your home directory will now be automatically synced with any other machines you have running SFU's DataStage, and will be accessible from a browser at http://datadisk.lib.sfu.ca." --button1 "OK"))
+success=($($CD msgbox --title "DataStage Install" --informative-text "Install complete! The /datadisk folder in your home directory will now be automatically synced with any other machines you have running SFU's DataStage, and will be accessible from a browser at http://datadisk.lib.sfu.ca." --button1 "OK"))
 else
-failure=($(CD msgbox --title "DataStage Install" --informative-text "Install did not complete successfully. Please verify your credentials and try again. If you continue to have problems, please contact Alex Garnett at garnett@sfu.ca." --button1 "OK"))
+failure=($($CD msgbox --title "DataStage Install" --informative-text "Install did not complete successfully. Please verify your credentials and try again. If you continue to have problems, please contact Alex Garnett at garnett@sfu.ca." --button1 "OK"))
 fi
 cd ..
 rm -r sshpass-1.04
