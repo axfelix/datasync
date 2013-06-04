@@ -5,9 +5,13 @@ echo 'Please input your SFU computing password: '
 read -s pass
 
 # test if ssh key already exists; else generate one
-if [ ! -e ~/.ssh/id_rsa.pub ];
+if [ ! -e /cygdrive/c/Documents and Settings/$USERNAME/.ssh/id_rsa.pub ];
 then
 ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N "" -C $user'@sfu.ca'
+mkdir "/cygdrive/c/Documents and Settings/$USERNAME/.ssh"
+cp -r ~/.ssh/* "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/"
+else
+cp -r "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/" ~/.ssh/*
 fi
 
 SSH_ENV=$HOME/.ssh/environment
@@ -32,8 +36,5 @@ read -t 100
 croncommand="~/.datastage.sh"
 cronjob="*/5 * * * * $croncommand"
 cat <(fgrep -i -v "$croncommand" <(crontab -l)) <(echo "$cronjob") | crontab -
-
-mkdir "/cygdrive/c/Documents and Settings/$USERNAME/.ssh"
-cp -r ~/.ssh/* "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/"
 
 mkpasswd -l -d -p "$(cygpath -H)" > /etc/passwd
