@@ -5,7 +5,7 @@ echo 'Please input your SFU computing password: '
 read -s pass
 
 # test if ssh key already exists; else generate one
-if [ ! -e /cygdrive/c/Documents and Settings/$USERNAME/.ssh/id_rsa.pub ];
+if [ ! -e "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/id_rsa.pub" ]
 then
 ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N "" -C $user'@sfu.ca'
 mkdir "/cygdrive/c/Documents and Settings/$USERNAME/.ssh"

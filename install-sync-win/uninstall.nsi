@@ -1,5 +1,7 @@
 outfile "uninstall.exe"
 section
 rmdir /r C:\datastage-cygwin
-# remove reg keys
+deleteRegKey HKLM "SOFTWARE\Cygwin"
+deleteRegKey HKCU "Software\Cygwin"
+SelfDel::del
 sectionEnd
