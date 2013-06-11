@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -n "$(command -v yum)" ]; then
 sudo yum install unison
 sudo yum install sshpass
@@ -37,6 +39,6 @@ fi
 echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca/srv/datastage/private/'$user' -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\ndone' > ~/.datastage.sh
 
 # Add to /etc/crontab
-croncommand="~./datastage.sh"
+croncommand="~/.datastage.sh"
 cronjob="*/5 * * * * $croncommand"
 cat <(fgrep -i -v "$croncommand" <(crontab -l)) <(echo "$cronjob") | crontab -

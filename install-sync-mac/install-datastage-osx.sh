@@ -40,6 +40,6 @@ cd ..
 rm -r sshpass-1.04
 
 # Add to /etc/crontab
-croncommand="~./datastage.sh"
+croncommand="~/.datastage.sh"
 cronjob="*/5 * * * * $croncommand"
 cat <(fgrep -i -v "$croncommand" <(crontab -l)) <(echo "$cronjob") | crontab -
