@@ -17,7 +17,7 @@ user=${user[1]}
 pass=($($CD standard-inputbox --title "DataStage Install" --informative-text "Enter your SFU Computing Password" --no-show))
 pass=${pass[1]}
 
-echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca/srv/datastage/private/'$user' -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~" -rsrc=false -ignore="Name .FBCIndex" -ignore="Name .FBCLockFolder\nfi\ndone' > ~/.datastage.sh
+echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nif ps aux | grep "~[/].datastage"; then\nexit\nelse\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca/srv/datastage/private/'$user' -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~" -rsrc=false -ignore="Name .FBCIndex" -ignore="Name .FBCLockFolder\nfi\ndone' > ~/.datastage.sh
 
 # test if ssh key already exists; else generate one
 if [ ! -e ~/.ssh/id_rsa.pub ];

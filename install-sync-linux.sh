@@ -36,7 +36,7 @@ else
 echo "Install did not complete successfully. Please verify your credentials and try again. If you continue to have problems, please contact Alex Garnett at garnett@sfu.ca."
 fi
 
-echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca/srv/datastage/private/'$user' -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\ndone' > ~/.datastage.sh
+echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nif ps aux | grep "~[/].datastage"; then\nexit\nelse\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca/srv/datastage/private/'$user' -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\nfi\ndone' > ~/.datastage.sh
 
 # Add to /etc/crontab
 croncommand="~/.datastage.sh"
