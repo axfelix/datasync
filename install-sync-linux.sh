@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ -n "$(command -v yum)" ]; then
-sudo yum install unison
-sudo yum install sshpass
+sudo yum -y install unison
+sudo yum -y install sshpass
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
