@@ -6,8 +6,8 @@ sudo yum -y install sshpass
 fi
 
 if [ -n "$(command -v apt-get)" ]; then
-sudo apt-get install unison
-sudo apt-get install sshpass
+sudo apt-get -y install unison
+sudo apt-get -y install sshpass
 fi
 
 mkdir ~/datadisk
