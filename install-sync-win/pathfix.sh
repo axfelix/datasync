@@ -5,13 +5,27 @@ echo 'Please input your SFU computing password: '
 read -s pass
 
 # test if ssh key already exists; else generate one
-if [ ! -e "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/id_rsa.pub" ]
+if [ ! -e "/cygdrive/c/Users/$USERNAME" ]
 then
-ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N "" -C $user'@sfu.ca'
-mkdir "/cygdrive/c/Documents and Settings/$USERNAME/.ssh"
-cp -r ~/.ssh/* "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/"
+	if [ ! -e "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/id_rsa.pub" ]
+	then
+	ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N "" -C $user'@sfu.ca'
+	mkdir "/cygdrive/c/Documents and Settings/$USERNAME/.ssh"
+	cp -r ~/.ssh/* "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/"
+	else
+	mkdir ~/.ssh
+	cp -r "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/" ~/.ssh/
+	fi
 else
-cp -r "/cygdrive/c/Documents and Settings/$USERNAME/.ssh/" ~/.ssh/*
+	if [ ! -e "/cygdrive/c/Users/$USERNAME/.ssh/id_rsa.pub" ]
+	then
+	ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N "" -C $user'@sfu.ca'
+	mkdir "/cygdrive/c/Users/$USERNAME/.ssh"
+	cp -r ~/.ssh/* "/cygdrive/c/Users/$USERNAME/.ssh/"
+	else
+	mkdir ~/.ssh
+	cp -r "/cygdrive/c/Users/$USERNAME/.ssh/" ~/.ssh/
+	fi
 fi
 
 SSH_ENV=$HOME/.ssh/environment
