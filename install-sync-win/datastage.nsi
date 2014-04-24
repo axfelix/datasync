@@ -19,7 +19,7 @@ delete $DESKTOP\setup.ini
 setOutPath c:\datastage-cygwin\bin
 File install-datastage-win.sh
 File pathfix.sh
-ExecWait "bash.exe -l -c 'cygrunsrv -I cron -p /usr/sbin/cron -a -n'"
+ExecWait "bash.exe -l -c 'cygrunsrv -I DataSync -p /usr/sbin/cron -a -n'"
 ExecWait "net start cron"
 ExecWait "bash.exe -l -c pathfix.sh"
 ExecWait "bash.exe -l -c install-datastage-win.sh"

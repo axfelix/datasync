@@ -24,8 +24,7 @@ echo 'Please input your SFU computing password: '
 read -s pass
 
 # test if ssh key already exists; else generate one
-if [ ! -e ~/.ssh/id_rsa.pub ];
-then
+if [ ! -e ~/.ssh/id_rsa.pub ]; then
 ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -N ""
 fi
 sshpass -p $pass ssh-copy-id $user@datadisk.lib.sfu.ca
@@ -36,7 +35,7 @@ else
 echo "Install did not complete successfully. Please verify your credentials and try again. If you continue to have problems, please contact Alex Garnett at garnett@sfu.ca."
 fi
 
-echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nif ps aux | grep "~[/].datastage"; then\nexit\nelse\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca:/home/'$user' -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\nfi\ndone' > ~/.datastage.sh
+echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nif ps aux | grep "~[/].datastage"; then\nexit\nelse\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca:/home/'$user'/.pydiodata -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\nfi\ndone' > ~/.datastage.sh
 
 # Add to /etc/crontab
 croncommand="~/.datastage.sh"
