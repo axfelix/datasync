@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 pydiopath='/var/lib/pydio/personal/'$USER
 if [ ! -e $pydiopath ]; then
