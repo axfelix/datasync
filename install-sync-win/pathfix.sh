@@ -40,7 +40,7 @@ chmod +x ~/login.expect
 rm ~/login.expect
 
 if [ $? -eq 0 ]; then
-echo "Install complete! The /datadisk folder in your home directory will now be automatically synced with any other machines you have running SFU's DataSync, and will be accessible from a browser at http://datadisk.lib.sfu.ca."
+echo "Install complete! The /datadisk folder in your home directory will now be automatically synced with any other machines you have running SFU's DataSync, and will be accessible from a browser at http://researchdata.sfu.ca/pydio."
 else
 echo "Install did not complete successfully. Please verify your credentials and try again. If you continue to have problems, please contact Alex Garnett at garnett@sfu.ca."
 fi

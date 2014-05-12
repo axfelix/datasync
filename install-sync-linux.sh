@@ -30,12 +30,12 @@ fi
 sshpass -p $pass ssh-copy-id $user@datadisk.lib.sfu.ca
 
 if [ $? -eq 0 ]; then
-echo "Install complete! The /datadisk folder in your home directory will now be automatically synced with any other machines you have running SFU's DataSync, and will be accessible from a browser at http://datadisk.lib.sfu.ca."
+echo "Install complete! The /datadisk folder in your home directory will now be automatically synced with any other machines you have running SFU's DataSync, and will be accessible from a browser at http://researchdata.sfu.ca/pydio."
 else
 echo "Install did not complete successfully. Please verify your credentials and try again. If you continue to have problems, please contact Alex Garnett at garnett@sfu.ca."
 fi
 
-echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nif ps aux | grep "~[/].datastage"; then\nexit\nelse\nunison ~/datadisk ssh://'$user'@datadisk.lib.sfu.ca:/home/'$user'/.pydiodata -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\nfi\ndone' > ~/.datastage.sh
+echo -e '#test for network conection\nfor interface in $(ls /sys/class/net/ | grep -v lo);\ndo\n  if [[ $(cat /sys/class/net/$interface/carrier) = 1 ]]; then\nif ps aux | grep "~[/].datastage"; then\nexit\nelse\nunison ~/datadisk ssh://'$user'@researchdata.sfu.ca:/home/'$user'/.pydiodata -batch -backups -copythreshold 5000 -prefer root -ignore="Name *.tmp" -ignore="Name *~"\nfi\nfi\ndone' > ~/.datastage.sh
 
 # Add to /etc/crontab
 croncommand="~/.datastage.sh"
