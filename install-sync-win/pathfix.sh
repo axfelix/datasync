@@ -36,7 +36,7 @@ chmod 600 "${SSH_ENV}"
 
 echo -e '#!/usr/bin/expect -f\nspawn ssh-copy-id $argv\nexpect "(yes/no)?"\nsend "yes\n"\nexpect "password:"\nsend "'$pass'\n"\nexpect eof' > ~/login.expect
 chmod +x ~/login.expect
-~/login.expect $user@datadisk.lib.sfu.ca
+~/login.expect $user@researchdata.sfu.ca
 rm ~/login.expect
 
 if [ $? -eq 0 ]; then

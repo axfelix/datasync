@@ -4,7 +4,7 @@ pydiopath='/var/lib/pydio/personal/'$USER
 if [ ! -e $pydiopath ]; then
 mkdir $pydiopath
 fi
-chmod -R 775 $pydiopath
+chmod -R 770 $pydiopath
 chown -R $USER $pydiopath
 chgrp -R apache $pydiopath
 if [ ! -e ~/.pydiodata ]; then
