@@ -14,7 +14,7 @@ File setup.ini
 File release.zip
 nsUnzip::Extract release.zip /END
 delete $DESKTOP\sfu-datastage-install\release.zip
-ExecWait 'setup.exe -q -n -L %DESKTOP%\sfu-datastage-install -R c:\datastage-cygwin'
+ExecWait 'setup.exe -q -n -L %UserProfile%\Desktop\sfu-datastage-install -R c:\datastage-cygwin'
 delete $DESKTOP\sfu-datastage-install\setup.exe
 delete $DESKTOP\sfu-datastage-install\setup.ini
 setOutPath c:\datastage-cygwin\bin
